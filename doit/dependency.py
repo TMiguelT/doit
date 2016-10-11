@@ -23,7 +23,6 @@ else:
 #       >>> anydbm._defaultmod
 
 import json
-import sqlite3
 
 
 class DatabaseException(Exception):
@@ -266,6 +265,9 @@ class SqliteDB(object):
     @staticmethod
     def _sqlite3(name):
         """Open/create a sqlite3 DB file"""
+
+        # Import sqlite here so it's only imported when required
+        import sqlite3
         def dict_factory(cursor, row):
             """convert row to dict"""
             data = {}
